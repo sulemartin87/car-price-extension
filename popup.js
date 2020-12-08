@@ -145,9 +145,18 @@ function getEngineSize(currentPrice, currentYear, tabID) {
     chrome.tabs.executeScript(tabID, { code: engineSizeScript }, function (result) {
         var engineSize = parseInt(result[0]);
         var finalDuty = getVehicleValue(parseInt(currentYear), parseInt(engineSize), parseInt(currentPrice));
+        var priceWithoutInsurance = currentPrice + finalDuty + 200000;
+        var insurance = priceWithoutInsurance * (13 / 100);
+        var bluebook = 15000;
+        var registration = 15000;
+        var cof = 15000;
         document.getElementById('duty').innerHTML = `MWK ${formatThousands(finalDuty)}`;
+        document.getElementById('insurance').innerHTML = `MWK ${formatThousands(insurance)}`;
         document.getElementById('driver').innerHTML = `MWK ${formatThousands(200000)}`;
-        document.getElementById('total').innerHTML = `MWK ${formatThousands(currentPrice + finalDuty + 200000)}`;
+        document.getElementById('blue-book').innerHTML = `MWK ${formatThousands(bluebook)}`;
+        document.getElementById('cof').innerHTML = `MWK ${formatThousands(cof)}`;
+        document.getElementById('registration').innerHTML = `MWK ${formatThousands(registration)}`;
+        document.getElementById('total').innerHTML = `MWK ${formatThousands(priceWithoutInsurance + insurance + bluebook + registration + cof)}`;
     });
 }
 
