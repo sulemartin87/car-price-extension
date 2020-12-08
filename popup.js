@@ -96,7 +96,7 @@ function getPrice() {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.executeScript(tabs[0].id, { code: priceScript }, function (result) {
             var currentPrice = parseInt(result[0].replace(/\D/g, ''));
-            document.getElementById('car-price').innerHTML = `MWK ${currentPrice * 750}`;
+            document.getElementById('car-price').innerHTML = `MWK ${formatThousands(currentPrice * 750)}`;
             getCarYear(currentPrice * 750, tabs[0].id);
         });
     });
@@ -145,10 +145,16 @@ function getEngineSize(currentPrice, currentYear, tabID) {
     chrome.tabs.executeScript(tabID, { code: engineSizeScript }, function (result) {
         var engineSize = parseInt(result[0]);
         var finalDuty = getVehicleValue(parseInt(currentYear), parseInt(engineSize), parseInt(currentPrice));
-        document.getElementById('duty').innerHTML = finalDuty;
-        document.getElementById('driver').innerHTML = 200000;
-        document.getElementById('total').innerHTML = currentPrice + finalDuty + 200000;
+        document.getElementById('duty').innerHTML = `MWK ${formatThousands(finalDuty)}`;
+        document.getElementById('driver').innerHTML = `MWK ${formatThousands(200000)}`;
+        document.getElementById('total').innerHTML = `MWK ${formatThousands(currentPrice + finalDuty + 200000)}`;
     });
 }
 
 
+var formatThousands = function(n, dp){
+    var s = ''+(Math.floor(n)), d = n % 1, i = s.length, r = '';
+    while ( (i -= 3) > 0 ) { r = ',' + s.substr(i, 3) + r; }
+    return s.substr(0, i + 3) + r + 
+      (d ? '.' + Math.round(d * Math.pow(10, dp || 2)) : '');
+  };
