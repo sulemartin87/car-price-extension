@@ -127,8 +127,8 @@ function getVehicleValue(yearOfMake, engineSize, price) {
         engineSizeRange = "3000+";
     }
     var import_duty = (duty.sedans[engineSizeRange][yearRange].import_duty / 100) * price;
-    var import_excise = ((duty.sedans[engineSizeRange][yearRange].import_excise / 100) * price) + import_duty;
-    var import_vat = ((duty.sedans[engineSizeRange][yearRange].import_vat / 100) * import_excise) + import_excise;
+    var import_excise = ((duty.sedans[engineSizeRange][yearRange].import_excise / 100) * price + import_duty);
+    var import_vat = ((duty.sedans[engineSizeRange][yearRange].import_vat / 100) * (import_excise + import_excise));
     var total_duty_payable = import_duty + import_excise + import_vat;//K1, 786, 250.
     return (total_duty_payable);
 }
@@ -144,7 +144,7 @@ function getEngineSize(currentPrice, currentYear, tabID) {
     var engineSizeScript = "document.getElementById('ga_params').getAttribute('spec_engine_size')";
     chrome.tabs.executeScript(tabID, { code: engineSizeScript }, function (result) {
         var engineSize = parseInt(result[0]);
-        var finalDuty = getVehicleValue(parseInt(currentYear), parseInt(engineSize), parseInt(currentPrice));
+        var finalDuty = getVehicleValue(parseInt(currentYear), engineSize, parseInt(currentPrice));
         var priceWithoutInsurance = currentPrice + finalDuty + 200000;
         var insurance = priceWithoutInsurance * (13 / 100);
         var bluebook = 15000;
@@ -160,8 +160,8 @@ function getEngineSize(currentPrice, currentYear, tabID) {
     });
 }
 
-
-var formatThousands = function(n, dp){
+var formatThousands = function(n){
+    var dp = 2;
     var s = ''+(Math.floor(n)), d = n % 1, i = s.length, r = '';
     while ( (i -= 3) > 0 ) { r = ',' + s.substr(i, 3) + r; }
     return s.substr(0, i + 3) + r + 
