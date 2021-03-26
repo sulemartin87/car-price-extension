@@ -92,12 +92,12 @@ var duty = {
     }
 };
 function getPrice() {
-    var priceScript = 'document.getElementsByClassName("ip-usd-price")[0].innerHTML';
+    var priceScript = "document.getElementById('fn-vehicle-price-total-price').innerHTML";
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.executeScript(tabs[0].id, { code: priceScript }, function (result) {
             var currentPrice = parseInt(result[0].replace(/\D/g, ''));
             document.getElementById('car-price').innerHTML = `MWK ${formatThousands(currentPrice * 750)}`;
-            getCarYear(currentPrice * 750, tabs[0].id);
+            getCarYear(currentPrice * 786.2, tabs[0].id);
         });
     });
 };
