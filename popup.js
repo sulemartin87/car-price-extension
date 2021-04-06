@@ -92,12 +92,17 @@ var duty = {
     }
 };
 function getPrice() {
+    var exchangeRate = parseFloat(document.getElementById('exchangeRate').value);
+
+    if(isNaN(exchangeRate)) {
+        exchangeRate = 780.0;
+    } 
     var priceScript = "document.getElementById('fn-vehicle-price-total-price').innerHTML";
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.executeScript(tabs[0].id, { code: priceScript }, function (result) {
             var currentPrice = parseInt(result[0].replace(/\D/g, ''));
-            document.getElementById('car-price').innerHTML = `MWK ${formatThousands(currentPrice * 750)}`;
-            getCarYear(currentPrice * 786.2, tabs[0].id);
+            document.getElementById('car-price').innerHTML = `MWK ${formatThousands(currentPrice * exchangeRate)}`;
+            getCarYear(currentPrice * exchangeRate, tabs[0].id);
         });
     });
 };
@@ -105,6 +110,8 @@ function getPrice() {
 changeColor.onclick = function () {
     getPrice();
 };
+document.getElementById('exchangeRate').addEventListener('input', getPrice);
+
 function getVehicleValue(yearOfMake, engineSize, price) {
     var yearRange = "0-8";
     var engineSizeRange = "1000-1499";
