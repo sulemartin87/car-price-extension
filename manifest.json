@@ -2,7 +2,7 @@
   "name": "Car price extension",
   "version": "1.0",
   "description": "Get current car prices on certain sites",
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "permissions": ["activeTab"],
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
