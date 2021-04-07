@@ -136,7 +136,7 @@ function getVehicleValue(yearOfMake, engineSize, price) {
     var import_duty = (duty.sedans[engineSizeRange][yearRange].import_duty / 100) * price;
     var import_excise = ((duty.sedans[engineSizeRange][yearRange].import_excise / 100) * price + import_duty);
     var import_vat = ((duty.sedans[engineSizeRange][yearRange].import_vat / 100) * (import_excise + import_excise));
-    var total_duty_payable = import_duty + import_excise + import_vat;//K1, 786, 250.
+    var total_duty_payable = import_duty + import_excise + import_vat;
     return (total_duty_payable);
 }
 
