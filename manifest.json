@@ -1,6 +1,6 @@
 {
   "name": "Car price extension",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Get current car prices on certain sites",
   "permissions": ["activeTab"],
   "browser_action": {
