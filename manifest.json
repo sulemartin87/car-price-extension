@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "Get current car prices on certain sites",
   "permissions": ["activeTab"],
-  "page_action": {
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/car_price_16.png",
