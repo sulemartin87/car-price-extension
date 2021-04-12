@@ -153,7 +153,7 @@ function getEngineSize(currentPrice, currentYear, tabID) {
         var engineSize = parseInt(result[0]);
         var finalDuty = getVehicleValue(parseInt(currentYear), engineSize, parseInt(currentPrice));
         var priceWithoutInsurance = currentPrice + finalDuty + 200000;
-        var insurance = priceWithoutInsurance * (13 / 100);
+        var insurance = priceWithoutInsurance * (7 / 100);
         var bluebook = 15000;
         var registration = 15000;
         var cof = 15000;
