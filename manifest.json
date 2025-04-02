@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "BeForward Car Price Calculator",
-  "version": "1.0",
+  "version": "1.2",
   "description": "Calculates total cost of importing a car including duty, insurance and other fees",
   "action": {
     "default_popup": "popup.html",
