@@ -12,6 +12,12 @@
       "128": "images/car_price_128.png"
     }
   },
+  "icons": {
+    "16": "images/car_price_16.png",
+    "32": "images/car_price_32.png",
+    "48": "images/car_price_48.png",
+    "128": "images/car_price_128.png"
+  },
   "permissions": [
     "activeTab",
     "scripting"
