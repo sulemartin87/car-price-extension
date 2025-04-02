@@ -1,9 +1,9 @@
 {
-  "name": "Car price extension",
-  "version": "1.0.2",
-  "description": "Get current car prices on certain sites",
-  "permissions": ["activeTab"],
-  "browser_action": {
+  "manifest_version": 3,
+  "name": "BeForward Car Price Calculator",
+  "version": "1.0",
+  "description": "Calculates total cost of importing a car including duty, insurance and other fees",
+  "action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/car_price_16.png",
@@ -12,11 +12,17 @@
       "128": "images/car_price_128.png"
     }
   },
-  "icons": {
-      "16": "images/car_price_16.png",
-      "32": "images/car_price_32.png",
-      "48": "images/car_price_48.png",
-      "128": "images/car_price_128.png"
-  },
-  "manifest_version": 2
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.beforward.jp/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["mra_duty.js"],
+      "matches": ["https://www.beforward.jp/*"]
+    }
+  ]
 }

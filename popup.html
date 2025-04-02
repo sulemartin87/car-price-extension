@@ -5,6 +5,7 @@
     body {
       width: 300px;
       height: 300px;
+      font-family: arial, sans-serif;
     }
 
     button {
@@ -45,10 +46,44 @@
       text-align: center;
       font-weight: bolder;
     }
+    
+    #error-message {
+      background-color: #ffebee;
+      border: 1px solid #f44336;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 20px 0;
+    }
+    
+    .loading:after {
+      content: " ";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #4CAF50;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
 
 <body>
+  <div id="loading" class="loading"></div>
+  
   <table>
     <tbody>
       <tr>
@@ -56,7 +91,7 @@
           Exchange rate
         </td>
         <td class="totals">
-          <input class="totals" type="number" step="0.01" placeholder="780" id="exchangeRate" value="780">
+          <input class="totals" type="number" step="0.01" placeholder="1751" id="exchangeRate" value="1751">
         </td>
       </tr>
       <tr>
@@ -117,7 +152,7 @@
         <td>
           Total
         </td>
-        <td  class="totals">
+        <td class="totals">
           <b id="total"> </b>
         </td>
       </tr>
@@ -125,7 +160,7 @@
   </table>
 
   <button id="changePrice" class="button">get price</button>
-  <script  type="module" src="popup.js"></script>
+  <script type="module" src="popup.js"></script>
 </body>
 
 </html>
